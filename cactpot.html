@@ -125,8 +125,14 @@
       return $("<tr>").append($left).append($right);
     }
 
+    function reset_input() {
+      $("input").val("");
+      $(".ev div").html("");
+    }
+
     $(function() {
       $(".go").click(calc_the_evs);
+      $(".reset").click(reset_input);
       make_the_payout_table();
     });
 
@@ -136,6 +142,7 @@
     html {
       background-color: black;
       color: white;
+      text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
     }
     * {
       font-family: "Meiryo";
@@ -143,17 +150,24 @@
     .title {
       font-variant: small-caps;
       text-align: center;
-      font-size: 5em
+      font-size: 5em;
+      color: #DED7BE;
+      text-shadow: -1px 0 2px #795516, 0 1px 2px #795516, 1px 0 2px #795516, 0 -1px 2px #795516;
     }
     .mainContainer {
       width: intrinsic;
       margin-left: auto;
       margin-right: auto;
     }
-    .boardContainer, .payoutContainer, .payoutTable {
+    .boardContainer, .payoutContainer, .payoutTable, .go, .reset {
       display: inline-block;
       vertical-align: top;
     }
+    .payoutTitle {
+      text-align: center;
+      font-size: 2em;
+    }
+
     .ev, .input {
       font-size: 3em;
       text-align: center;
@@ -162,6 +176,26 @@
     .ev div {
       font-size: 12pt;
     }
+
+    th {
+      font-weight: normal;
+    }
+
+    div.payoutTable table tr td, div.payoutTable table tr th {
+      padding-left: 15px;
+      padding-right: 15px;
+      text-align: center
+    }
+
+    div.payoutTable table tr td:nth-child(1) {
+      color: #DED7BE;
+      text-shadow: -1px 0 2px #795516, 0 1px 2px #795516, 1px 0 2px #795516, 0 -1px 2px #795516;
+    }
+
+    div.payoutTable table tr td:nth-child(2) {
+      text-align:right;
+    }
+
     .boardContainer table {
       width: 100%;
     }
@@ -175,7 +209,7 @@
       font-size: 0.5em;
     }
 
-    .go {
+    .buttonContainer {
       width: intrinsic;
       margin-left: auto;
       margin-right: auto;
@@ -262,7 +296,7 @@
           </tr>
         </table>
       </div>
-      <div class="payoutTable">
+      <div class="payoutTable" style="margin-left: 30px">
         <table id="payoutTable2">
           <tr>
             <th>Sum</th>
@@ -272,8 +306,9 @@
       </div>
     </div>
   </div>
-  <div class="go">
-    <button>Calculate</button>
+  <div class="buttonContainer">
+    <button class="go">Calculate</button>
+    <button class="reset">Reset</button>
   </div>
 </body>
 
